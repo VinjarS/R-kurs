@@ -136,30 +136,6 @@ greeting()
 
 
 
-################################ Ikke med i lekse!##########################
-now()
-
-
-#finnklokkeslett
-get_time <- function(time = now()) {
-  time %>%
-    str_split(" ") %>%
-    map_chr(2) 
-}
-
-
-get_time()
-
-
-get_time2 <- function(time = now()) {
-  time %>%
-    str_split(" ") %>%
-    map_chr(2) %>%
-    hms()
-}
-
-get_time2()
-
 ###############################################################################
 
 
