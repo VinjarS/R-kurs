@@ -1,3 +1,10 @@
+
+# JP: 
+# Hei Vinjar!
+# Veldig gode løsninger! Jeg har skrevet noen tips og kommentarer til deg under, 
+# markert med "JP:". Håper kommentarene er nyttige :-)
+
+
 # hjemmelekse 2
 
 x <- c(10,20,30)
@@ -33,6 +40,7 @@ mult_to(x,y)
 # Feilmelding "Error in kvadrer_x() : argument "x" is missing, with no default"
 # Denne kommer for en prøver å kvadrere "ingenting", uten at en har gitt R beksjed om hvordan et slikt tilfelle skal behandles. 
 
+
 kvadrer_x <- function(x=NA) {
   if(is.na(x)) {
     stop("Du har ikke angitt hva som skal kvadreres, prøv å legge inn et tall")
@@ -40,11 +48,15 @@ kvadrer_x <- function(x=NA) {
   x^2
 }
 
+# JP: 
+# Riktig :-)
+
 kvadrer_x(3)
 
 #2.4 Default verdien er "pearson". Denne angir at en skal bruke Pearson correlation cofficient for beregning, dersom et av de to andre valgene ikke er spesifisert. 
 
-
+# JP: 
+# Korrekt!
 
 #2.5 Finnes to i vektoren? 
 
@@ -56,9 +68,17 @@ finnes_to <- function(var) {
 finnes_to(x)
 finnes_to(y)
 
+# JP: 
+# Veldig god bruk av "any()"! 
+# 
+# Tips: Funksjonen din funker veldig bra, men det er strengt tatt ikke nødvendig
+# med "{{}}" rundt "var" når man ikke bruk den i tidyverse-funksjoner (slik som 
+# dplyr eller ggplot). 
 
 #2.6 Disse funksjonene finnes allerede i R, dersom en lager nye funksjoner med disse navnene overskriver man de innebygde funksjonene. 
 
+# JP: 
+# Korrekt!
 
 # 2.7 er partall
 er_partall <-  function(x) {
@@ -68,12 +88,29 @@ er_partall <-  function(x) {
 
 er_partall(100)
 
+# JP: 
+# Dette synes jeg var en god og kul løsning - Kreativt! Se gjerne løsningsforslaget 
+# for et alternativ :-)
+
 #"FALSE" i er_partall vil alltid være oddetall, kan derfor bruke er_partall også til å stadfeste at er tall er oddetall "
+
+# JP: 
+# Korrekt! Og ved hjelp av "!" (leses: "not") kan man snu er_partall til !er_partall
+# (lese "not er partall"), som vil gi TRUE for oddetall, dersom man trenger det
+# i filtrering eller en if-statement. 
 
 # 2.8 if vs if_else
 # ved bruk av if(), vil det man ønsker å sammenligne/teste gjennomført dersom det er sant (TRUE), Dersom FALSE, vil ingenting skje. 
 # Ved bruk av ifelse vil en også kunne evaluere/returnere et svar dersom utfallet blir "FALSE" 
 # Ville brukt ifelse i en funksjon. 
+
+# JP: 
+# Det du sier er riktig, men en viktigere forskjell er at ifelse er vektorisert,
+# mens if kun evaluerer ett uttrykk. 
+# 
+# Begge har sin plass i en funksjon. Jeg bruker if() og else mye til control flow,
+# som for å bestemme valg i en funksjon. Ifelse bruker jeg mye til å transformere
+# variabler siden den er vektorisert. 
 
 
 #2.9 uten de dobble parantesene, {{}}, vil ikke R skjønne at det er variabelen inne i funksjonen vi ønsker å finne, men  begynne å lete etter en variabel globalt. 
@@ -90,6 +127,9 @@ lag_histogram <-  function(.data, variabel) {
 lag_histogram(mtcars, hp)
 
 purrr:: map(.x=mtcars, .f= ~lag_histogram(.data = mtcars, variabel=.))
+
+# JP: 
+# Nydelig!
 
 # 3. God. 
 
@@ -134,6 +174,11 @@ greeting <- function(x= now(), output_som_melding = FALSE) {
 
 greeting()
 
+# JP: 
+# Denne funker, men du får en del warnings. De har med å gjøre at
+# R tolker 09:00:00 som en vektor fra 9 til 0. Siden du bruker IF så sjekker den
+# kun ett element, så den sjekker om x %>% str_split(" ") %>% map_chr(2) er større
+# enn 09, resten ignoreres.
 
 
 ###############################################################################
@@ -161,7 +206,8 @@ celsius_to__farenheit(23)
 #funksjon i funksjon
 farenheit_to__celcius(celsius_to__farenheit(23))
 
-
+# JP: 
+# Bra!
 
 
 ######### 5 DingDong #####################
@@ -184,6 +230,10 @@ dingdong <- function(x){
 }
 
 dingdong(15)
+
+# JP: 
+# Fin løsning. Se løsningsforslaget for en vektorisert versjon også (en som kan ta
+# flere input enn kun 15. F.eks. c(1:15)).
 
 
 
